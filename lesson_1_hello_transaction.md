@@ -1,10 +1,9 @@
-
-
 # 题目描述
 本地下载TiDB,TiKV,PD源代码，改写源码并编译部署一下环境：
 * TiDB
 * PD
 * TiKV
+
 改写后：使得TiDB启动事务时，能打印出一个“hello transaction”的日志
 
 # 环境
@@ -26,13 +25,13 @@ git config --global core.compression 0
 设置后，git clone速度飞起，解决pd git clone问题
 
 * cargo build tikv慢
-其实也是利用公司往装好了rust环境，但是在家build tikv时还是遇到了问题。
-我一开始切换到 release-4.0版本，本以为是一个稳定版本，能直接执行`make`编译。
-但是在编译到后面会报错。"error[E0554]: #![feature] may not be used on the stable release channel Couldn't install racer using cargo"
-于是又重装rust nightly版本，下载龟速。
-又是一番网上各种搜索解决办法，最后通过配置rust的国内镜像解决问题。
-https://cloud.tencent.com/developer/article/1620144
-经过多次尝试后，release-4.0还是没有编译成功，切换到master分支后，能够make通过。
+其实也是利用公司往装好了rust环境，但是在家build tikv时还是遇到了问题。<br>
+我一开始切换到 release-4.0版本，本以为是一个稳定版本，能直接执行`make`编译。<br>
+但是在编译到后面会报错。<br>"error[E0554]: #![feature] may not be used on the stable release channel Couldn't install racer using cargo"
+于是又重装rust nightly版本，下载龟速。<br>
+又是一番网上各种搜索解决办法，最后通过配置rust的国内镜像解决问题。<br>
+`https://cloud.tencent.com/developer/article/1620144`
+经过多次尝试后，release-4.0还是没有编译成功，切换到master分支后，能够make通过。<br>
 
 * TiDB/PD build
 都切换到release-4.0分支,使用make能顺利编译完成。
@@ -58,9 +57,40 @@ https://cloud.tencent.com/developer/article/1620144
 通过查看输出到stderr的log，显示pd/tikv/tidb连接正常，
 
 # print "hello transaction" when tidb starts a transaction
-通过阅读tidb源码，同时使用搜索，很容易在tidb源码中找到Transaction启动的代码。
-Transaction interface定义在package tidb/kv中的kv.go文件中,定义了熟悉的Commit/Rollback等方法。(Begin方法定义在Storage interface中)
-Implementation of Transaction在tidb/store/tikv package中的kv.go中。
-在方法`func (s *tikvStore) Begin() (kv.Transaction, error)` 或 `func (s *tikvStore) BeginWithStartTS(startTS uint64) (kv.Transaction, error)`
-中加入code: `logutil.BgLogger().Info("hello transaction")`
-重新make并run，可以看到tidb的输出能持续打印出“hello transaction”的log
+通过阅读tidb源码，同时使用搜索，很容易在tidb源码中找到Transaction启动的代码。<br>
+Transaction interface定义在package tidb/kv中的kv.go文件中, <br>它定义了熟悉的Commit/Rollback等方法。<br>
+(Begin方法定义在Storage interface中)<br>
+Implementation of Transaction在tidb/store/tikv package中的kv.go中。<br>
+在方法`func (s *tikvStore) Begin() (kv.Transaction, error)` <br>
+或 `func (s *tikvStore) BeginWithStartTS(startTS uint64) (kv.Transaction, error)`中加入code:<br>
+`logutil.BgLogger().Info("hello transaction")`<br>
+重新make并run，可以看到tidb的输出能持续打印出“hello transaction”的log<br>
+
+# mysql client test
+
+执行 `mysql -h 127.0.0.1 -P 4000 -u root`命令，创建一个表 
+```
+mysql> create table students ( id int auto_increment primary key, sex enum('male','female'), name varchar(8), grade int);
+```
+
+插入一些数据：
+```
+mysql> insert into students (sex,name,grade) values ('female','Alice',1);
+mysql> insert into students (sex,name,grade) values ('male','Bob',2);
+mysql> insert into students (sex,name,grade) values ('male','Jeff',3);
+```
+
+查询：
+```
+mysql> select * from students;
++----+--------+-------+-------+
+| id | sex    | name  | grade |
++----+--------+-------+-------+
+|  1 | female | Alice |     1 |
+|  2 | male   | Bob   |     2 |
+|  3 | male   | Jeff  |     3 |
++----+--------+-------+-------+
+3 rows in set (0.01 sec)
+```
+
+测试事务 begin，commit，rollback，和使用mysql一样。
