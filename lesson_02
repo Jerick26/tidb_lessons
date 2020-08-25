@@ -99,7 +99,7 @@ Threads fairness:
     events (avg/stddev):           17003.2500/18.46
     execution time (avg/stddev):   179.9515/0.00
 ```
-
+![image](https://user-images.githubusercontent.com/23067882/91176245-9269f080-e714-11ea-8824-1b835aa521ae.png)
 
 
 ## go-ycsb测试报告
