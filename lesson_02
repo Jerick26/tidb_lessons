@@ -1,4 +1,5 @@
 
+## 环境配置
 * 机器配置： *
 8Vcore, Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
 16G Mem, 2133 MHz
@@ -103,6 +104,38 @@ Threads fairness:
 
 
 ## go-ycsb测试报告
+执行命令: `./bin/go-ycsb run mysql -P workloads/workloada -p operationcount=1000 -p mysql.host=127.0.0.1 -p mysql.port=4000 --threads 8`
+output:
+```
+***************** properties *****************
+"threadcount"="8"
+"readallfields"="true"
+"operationcount"="1000"
+"recordcount"="1000"
+"readproportion"="0.5"
+"requestdistribution"="uniform"
+"workload"="core"
+"mysql.port"="4000"
+"scanproportion"="0"
+"mysql.host"="127.0.0.1"
+"dotransactions"="true"
+"updateproportion"="0.5"
+"insertproportion"="0"
+**********************************************
+READ   - Takes(s): 10.0, Count: 125, OPS: 12.5, Avg(us): 2282, Min(us): 544, Max(us): 12510, 99th(us): 5000, 99.9th(us): 13000, 99.99th(us): 13000
+UPDATE - Takes(s): 9.4, Count: 110, OPS: 11.8, Avg(us): 693974, Min(us): 464331, Max(us): 1023933, 99th(us): 1020000, 99.9th(us): 1024000, 99.99th(us): 1024000
+READ   - Takes(s): 20.0, Count: 267, OPS: 13.4, Avg(us): 2654, Min(us): 544, Max(us): 14835, 99th(us): 13000, 99.9th(us): 15000, 99.99th(us): 15000
+UPDATE - Takes(s): 19.4, Count: 240, OPS: 12.4, Avg(us): 654774, Min(us): 464331, Max(us): 1023933, 99th(us): 1018000, 99.9th(us): 1024000, 99.99th(us): 1024000
+READ   - Takes(s): 30.0, Count: 410, OPS: 13.7, Avg(us): 3588, Min(us): 544, Max(us): 271100, 99th(us): 13000, 99.9th(us): 272000, 99.99th(us): 272000
+UPDATE - Takes(s): 29.4, Count: 374, OPS: 12.7, Avg(us): 627662, Min(us): 421447, Max(us): 1023933, 99th(us): 1004000, 99.9th(us): 1024000, 99.99th(us): 1024000
+READ   - Takes(s): 40.0, Count: 503, OPS: 12.6, Avg(us): 3361, Min(us): 455, Max(us): 271100, 99th(us): 11000, 99.9th(us): 272000, 99.99th(us): 272000
+UPDATE - Takes(s): 39.4, Count: 470, OPS: 11.9, Avg(us): 647562, Min(us): 421447, Max(us): 1283542, 99th(us): 1266000, 99.9th(us): 1284000, 99.99th(us): 1284000
+Run finished, takes 44.39704297s
+READ   - Takes(s): 44.4, Count: 517, OPS: 11.6, Avg(us): 3331, Min(us): 455, Max(us): 271100, 99th(us): 11000, 99.9th(us): 272000, 99.99th(us): 272000
+UPDATE - Takes(s): 43.8, Count: 483, OPS: 11.0, Avg(us): 646926, Min(us): 421447, Max(us): 1283542, 99th(us): 1266000, 99.9th(us): 1284000, 99.99th(us): 1284000
+```
+![image](https://user-images.githubusercontent.com/23067882/91177760-c8a86f80-e716-11ea-97d4-7f483ffb1130.png)
 
 ## go-tpc测试报告
+
 
