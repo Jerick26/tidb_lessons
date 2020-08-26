@@ -1,22 +1,22 @@
-
 ## 环境配置
-* 机器配置： *
+**机器配置：**<br>
 8Vcore, Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
 16G Mem, 2133 MHz
 HDD
 
-* 拓扑结构 *
+**拓扑结构:**<br>
 都部署在一个机器上
 1 pd, 3 tikv, 1 tidb
 
-* 参数配置 *
+**参数配置:**<br>
 默认
 
 ## sysbench测试报告
 导入10W数据，4张表
 
-Point select output：
-```
+Point select output:
+
+```yaml
 SQL statistics:
     queries performed:
         read:                            4953915
@@ -41,10 +41,12 @@ Latency (ms):
 
 Threads fairness:
     events (avg/stddev):           619239.3750/224.85
-    execution time (avg/stddev):   179.6605/0.00```
- 
- Update index output:
- ```
+    execution time (avg/stddev):   179.6605/0.00
+```
+
+
+Update index output:
+```yaml
  SQL statistics:
     queries performed:
         read:                            0
@@ -73,7 +75,8 @@ Threads fairness:
 ```
 
 Read-only output:
-```
+
+```yaml
 SQL statistics:
     queries performed:
         read:                            1904364
@@ -100,13 +103,15 @@ Threads fairness:
     events (avg/stddev):           17003.2500/18.46
     execution time (avg/stddev):   179.9515/0.00
 ```
+
 ![image](https://user-images.githubusercontent.com/23067882/91176245-9269f080-e714-11ea-8824-1b835aa521ae.png)
 
 
 ## go-ycsb测试报告
 执行命令: `./bin/go-ycsb run mysql -P workloads/workloada -p operationcount=1000 -p mysql.host=127.0.0.1 -p mysql.port=4000 --threads 8`
-output:
-```
+output:<br>
+
+```yaml
 ***************** properties *****************
 "threadcount"="8"
 "readallfields"="true"
@@ -134,8 +139,9 @@ Run finished, takes 44.39704297s
 READ   - Takes(s): 44.4, Count: 517, OPS: 11.6, Avg(us): 3331, Min(us): 455, Max(us): 271100, 99th(us): 11000, 99.9th(us): 272000, 99.99th(us): 272000
 UPDATE - Takes(s): 43.8, Count: 483, OPS: 11.0, Avg(us): 646926, Min(us): 421447, Max(us): 1283542, 99th(us): 1266000, 99.9th(us): 1284000, 99.99th(us): 1284000
 ```
+
 ![image](https://user-images.githubusercontent.com/23067882/91177760-c8a86f80-e716-11ea-97d4-7f483ffb1130.png)
 
 ## go-tpc测试报告
-
+test
 
