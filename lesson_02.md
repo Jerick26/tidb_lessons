@@ -108,8 +108,9 @@ Threads fairness:
 
 
 ## go-ycsb测试报告
-执行命令: `./bin/go-ycsb run mysql -P workloads/workloada -p operationcount=1000 -p mysql.host=127.0.0.1 -p mysql.port=4000 --threads 8`
-output:<br>
+执行命令: <br>
+`./bin/go-ycsb run mysql -P workloads/workloada -p operationcount=1000 -p mysql.host=127.0.0.1 -p mysql.port=4000 --threads 8`<br>
+output:
 
 ```yaml
 ***************** properties *****************
