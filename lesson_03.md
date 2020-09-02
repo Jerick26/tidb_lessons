@@ -23,4 +23,8 @@ curl http://127.0.0.1:10080/debug/zip\?seconds\=60 --output debug-tpcc-run.zip
 <br>
 ![image](https://user-images.githubusercontent.com/23067882/91975028-53a9eb00-ed51-11ea-8914-518be6ddf762.png)
 
-从火焰图中可以看出程序的大部分时间都在执行golang runtime的mcall和mstart。
+从火焰图中可以看出程序的大部分时间都在执行golang runtime的mcall和mstart。<br>
+查阅golang的关于mcall的资料，`mcall switches from the g to the g0 stack and invokes fn(g), where g is the goroutine that made the call. `, `mstart is the entry-point for new Ms.`。可能与go routine频繁切换有关。对于关键服务 dispatch, autoAnalizeWorker, httpClient Reader/Write 占比不超过10%，优化的空间很少。
+
+后来又过了一遍profile的graph图，发现runtime.futex执行时间高，可能更网上说的Ticker定时器trigger周期很小有关，这个还得下来仔细阅读代码来分析。
+![image](https://user-images.githubusercontent.com/23067882/91977276-ffa10580-ed54-11ea-984f-7683d2d84203.png)
