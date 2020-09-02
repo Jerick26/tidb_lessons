@@ -144,5 +144,40 @@ UPDATE - Takes(s): 43.8, Count: 483, OPS: 11.0, Avg(us): 646926, Min(us): 421447
 ![image](https://user-images.githubusercontent.com/23067882/91177760-c8a86f80-e716-11ea-97d4-7f483ffb1130.png)
 
 ## go-tpc测试报告
-test
+执行命令<br>
+```
+./bin/go-tpc tpcc -H 127.0.0.1 -P 4000 -D tpcc --warehouses 4 prepare
+./bin/go-tpc tpcc -H 127.0.0.1 -P 4000 -D tpcc --warehouses 4 run
+```
+
+output:
+
+```
+[Current] NEW_ORDER - Takes(s): 7.9, Count: 3, TPM: 22.7, Sum(ms): 5831, Avg(ms): 1943, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] ORDER_STATUS - Takes(s): 1.0, Count: 1, TPM: 58.2, Sum(ms): 401, Avg(ms): 401, 90th(ms): 512, 99th(ms): 512, 99.9th(ms): 512
+[Current] PAYMENT - Takes(s): 5.3, Count: 1, TPM: 11.4, Sum(ms): 2674, Avg(ms): 2674, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] DELIVERY - Takes(s): 5.9, Count: 1, TPM: 10.2, Sum(ms): 5174, Avg(ms): 5174, 90th(ms): 8000, 99th(ms): 8000, 99.9th(ms): 8000
+[Current] NEW_ORDER - Takes(s): 0.6, Count: 1, TPM: 108.0, Sum(ms): 2285, Avg(ms): 2285, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] ORDER_STATUS - Takes(s): 2.8, Count: 1, TPM: 21.1, Sum(ms): 300, Avg(ms): 300, 90th(ms): 512, 99th(ms): 512, 99.9th(ms): 512
+[Current] PAYMENT - Takes(s): 3.1, Count: 1, TPM: 19.1, Sum(ms): 2714, Avg(ms): 2714, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 5.8, Count: 1, TPM: 10.3, Sum(ms): 2333, Avg(ms): 2333, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 8.2, Count: 4, TPM: 29.4, Sum(ms): 7455, Avg(ms): 1863, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 8.9, Count: 2, TPM: 13.5, Sum(ms): 4399, Avg(ms): 2199, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 5.9, Count: 2, TPM: 20.3, Sum(ms): 4968, Avg(ms): 2484, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 7.6, Count: 1, TPM: 7.9, Sum(ms): 3840, Avg(ms): 3840, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 5.3, Count: 1, TPM: 11.3, Sum(ms): 2260, Avg(ms): 2260, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] DELIVERY - Takes(s): 6.7, Count: 1, TPM: 8.9, Sum(ms): 8548, Avg(ms): 8548, 90th(ms): 16000, 99th(ms): 16000, 99.9th(ms): 16000
+[Current] NEW_ORDER - Takes(s): 3.1, Count: 1, TPM: 19.6, Sum(ms): 3691, Avg(ms): 3691, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 9.9, Count: 1, TPM: 6.1, Sum(ms): 3197, Avg(ms): 3197, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] ORDER_STATUS - Takes(s): 4.0, Count: 1, TPM: 15.2, Sum(ms): 542, Avg(ms): 542, 90th(ms): 1000, 99th(ms): 1000, 99.9th(ms): 1000
+[Current] PAYMENT - Takes(s): 7.2, Count: 3, TPM: 25.0, Sum(ms): 7338, Avg(ms): 2446, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 9.7, Count: 4, TPM: 24.7, Sum(ms): 9092, Avg(ms): 2273, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 9.0, Count: 3, TPM: 20.0, Sum(ms): 9728, Avg(ms): 3242, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] ORDER_STATUS - Takes(s): 0.3, Count: 1, TPM: 180.9, Sum(ms): 332, Avg(ms): 332, 90th(ms): 512, 99th(ms): 512, 99.9th(ms): 512
+[Current] PAYMENT - Takes(s): 6.5, Count: 1, TPM: 9.2, Sum(ms): 2484, Avg(ms): 2484, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 2.9, Count: 1, TPM: 20.7, Sum(ms): 3326, Avg(ms): 3326, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 8.1, Count: 3, TPM: 22.4, Sum(ms): 6233, Avg(ms): 2077, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] NEW_ORDER - Takes(s): 3.2, Count: 1, TPM: 18.9, Sum(ms): 3231, Avg(ms): 3231, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+[Current] PAYMENT - Takes(s): 8.4, Count: 3, TPM: 21.3, Sum(ms): 6752, Avg(ms): 2250, 90th(ms): 4000, 99th(ms): 4000, 99.9th(ms): 4000
+```
 
